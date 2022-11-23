@@ -1,0 +1,4 @@
+*.pyc
+media/
+logger/migrations/
+!logger/migrations/__init__.py
