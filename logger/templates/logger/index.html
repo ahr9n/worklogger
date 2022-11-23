@@ -1,0 +1,44 @@
+{% extends "logger/layout.html" %}
+
+{% block body %}
+    <h1>Hello, {{user.username}}!</h1>
+    <a href="{% url 'logout_view' %}">Log Out</a>
+    
+
+    <form method="POST" novalidate>
+      <h1>LOG YOUR TIME BELOW</h1>
+      {% csrf_token %} {{log_form.as_table}}
+      <input type="submit" value="Add Log" name="add" />
+    </form>
+    <h2>{{messsage}}</h2>
+
+    <form method="POST">
+      {% csrf_token %} {{view_form.as_table}}
+      <input type="submit" value="View Logs" name="view" />
+    </form>
+
+    <h1>TOTAL HOURS LOGGED TODAY: {{total_hours_logged_today}} hours</h1>
+    <h1>TOTAL HOURS LOGGED THIS WEEK: {{total_hours_logged_week}} hours</h1>
+    <h1>TOTAL HOURS LOGGED THIS MONTH: {{total_hours_logged_month}} hours</h1>
+
+    <table>
+      <tr>
+        <th>DURATION</th>
+        <th>PROJECT</th>
+        <th>REMARKS</th>
+      </tr>
+      {% for log in logs %} {% if log.created_at > log.day %}
+      <tr style="color: red">
+        <th>{{log.duration|floatformat:2}}h</th>
+        <th>{{log.project.time}}</th>
+        <th>{{log.description}}</th>
+      </tr>
+      {% else %}
+      <tr style="color: black">
+        <th>{{log.duration|floatformat:2}}h</th>
+        <th>{{log.project.title}}</th>
+        <th>{{log.description}}</th>
+      </tr>
+      {% endif %} {%endfor%}
+    </table>
+{% endblock %}
