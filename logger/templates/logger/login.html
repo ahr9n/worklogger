@@ -1,22 +1,35 @@
-{% extends "logger/layout.html" %}
+{% extends "logger/layout.html" %} {% block body %}
 
-{% block body %}
+<h2>Login</h2>
 
-  <h2>Login</h2>
+{% if message %}
+<div>{{ message }}</div>
+{% endif %}
 
-  {% if message %}
-      <div>{{ message }}</div>
-  {% endif %}
-
-  <form action="{% url 'login_view' %}" method="post">
-      {% csrf_token %}
-      <div class="form-group">
-          <input autofocus class="form-control" type="text" name="username" placeholder="Username" required>
-      </div><br />
-      <div class="form-group">
-          <input class="form-control" type="password" name="password" placeholder="Password" required>
-      </div><br />
-      <input class="btn btn-primary" type="submit" value="Login">
-  </form>
+<form action="{% url 'login_view' %}" method="post">
+  {% csrf_token %}
+  <div class="form-group">
+    <input
+      autofocus
+      class="form-control"
+      type="text"
+      name="username"
+      placeholder="Username"
+      required
+    />
+  </div>
+  <br />
+  <div class="form-group">
+    <input
+      class="form-control"
+      type="password"
+      name="password"
+      placeholder="Password"
+      required
+    />
+  </div>
+  <br />
+  <input class="btn btn-primary" type="submit" value="Login" />
+</form>
 
 {% endblock %}
