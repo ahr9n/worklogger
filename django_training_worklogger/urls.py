@@ -15,7 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from logger.views import index, login_view, logout_view
+from django.conf.urls import handler404
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path("admin/", admin.site.urls),
+    path("", index, name="index"),
+    path("login/", login_view, name="login_view"),
+    path("logout/", logout_view, name="logout_view"),
 ]
+
+handler404 = "logger.views.error_404"
