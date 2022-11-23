@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "django-training-worklogger"
+version = "0.1.0"
+description = "Worklogger"
+authors = ["Ahmad Abdulrahman <ah.abdulrahmaan@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "django_training_worklogger"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+black = "^22.10.0"
+django = "^4.1.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
