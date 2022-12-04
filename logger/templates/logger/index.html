@@ -27,7 +27,7 @@
   {% for log in logs %} {% if log.created_at > log.day %}
   <tr style="color: red">
     <th>{{log.duration|floatformat:2}}h</th>
-    <th>{{log.project.time}}</th>
+    <th>{{log.project.title}}</th>
     <th>{{log.description}}</th>
   </tr>
   {% else %}

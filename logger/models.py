@@ -16,7 +16,9 @@ class Log(models.Model):
     description = models.CharField(max_length=256)
     created_at = models.DateField(auto_now_add=True)
     user = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL)
-    project = models.ForeignKey(Project, null=True, blank=True, on_delete=models.SET_NULL)
+    project = models.ForeignKey(
+        Project, null=True, blank=True, on_delete=models.SET_NULL
+    )
 
     def __str__(self):
         return f"{self.duration}, {self.description}"

@@ -3,6 +3,7 @@ from .models import Log, Project
 from django import forms
 from django.core.validators import MinValueValidator
 
+
 class LogForm(forms.ModelForm):
     duration = forms.FloatField(
         required=True,
@@ -31,6 +32,7 @@ class ViewForm(forms.ModelForm):
         widget=forms.widgets.DateInput(attrs={"type": "date"}),
         initial=datetime.date.today,
     )
+
     class Meta:
         model = Log
         fields = ["day"]

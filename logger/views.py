@@ -1,7 +1,11 @@
 import datetime
 from .forms import LogForm, ViewForm
 from .models import Log
-from .helpers import get_total_hours_logged_today, get_total_hours_logged_week, get_total_hours_logged_month
+from .helpers import (
+    get_total_hours_logged_today,
+    get_total_hours_logged_week,
+    get_total_hours_logged_month,
+)
 from django.urls import reverse
 from django.shortcuts import redirect, render
 from django.http.response import HttpResponseRedirect
