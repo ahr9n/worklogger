@@ -1,10 +1,9 @@
 import datetime
-from .models import *
+from .models import Log, Project
 from django import forms
 from django.core.validators import MinValueValidator
 
-
-class LogForm(forms.Form):
+class LogForm(forms.ModelForm):
     duration = forms.FloatField(
         required=True,
         widget=forms.TextInput(),
@@ -21,10 +20,17 @@ class LogForm(forms.Form):
     project = forms.ModelChoiceField(queryset=Project.objects.all())
     description = forms.CharField(required=True, widget=forms.TextInput())
 
+    class Meta:
+        model = Log
+        fields = ["duration", "day", "project", "description"]
 
-class ViewForm(forms.Form):
+
+class ViewForm(forms.ModelForm):
     day = forms.DateField(
         required=True,
         widget=forms.widgets.DateInput(attrs={"type": "date"}),
         initial=datetime.date.today,
     )
+    class Meta:
+        model = Log
+        fields = ["day"]
