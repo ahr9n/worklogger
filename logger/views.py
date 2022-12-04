@@ -1,11 +1,9 @@
 import datetime
-from .forms import *
-from .models import *
-from .helpers import *
+from .forms import LogForm, ViewForm
+from .models import Log
+from .helpers import get_total_hours_logged_today, get_total_hours_logged_week, get_total_hours_logged_month
 from django.urls import reverse
 from django.shortcuts import redirect, render
-from django.db import IntegrityError
-from django.contrib.auth.models import User
 from django.http.response import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
@@ -35,10 +33,9 @@ def logout_view(request):
     return redirect("login_view")
 
 
-@login_required(login_url="logger/login.html")
+@login_required(login_url="/login")
 def index(request):
-    log_form, view_form = LogForm(None), ViewForm(None)
-
+    log_form, view_form = LogForm(), ViewForm()
     if "add" in request.POST:
         log_form = LogForm(request.POST)
     if "view" in request.POST:
@@ -51,17 +48,15 @@ def index(request):
         project = log_form.cleaned_data.get("project")
         user = request.user
         description = log_form.cleaned_data["description"]
-
-        log = Log(
+        log = Log.objects.create(
             duration=duration,
             day=day,
             description=description,
             user=user,
             project=project,
         )
-        log.save()
         message = "Success"
-        log_form = LogForm(None)  # clear data after save form
+        log_form = LogForm()  # clear data after save form
 
     day = datetime.date.today()
     if request.method == "POST" and "view" in request.POST and view_form.is_valid():
