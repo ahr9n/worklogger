@@ -1,4 +1,2 @@
-*.pyc
-media/
-logger/migrations/
-!logger/migrations/__init__.py
+db.sqlite3
+.env
