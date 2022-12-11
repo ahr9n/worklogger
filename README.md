@@ -29,7 +29,7 @@ After signing in, there is a form where I could input a new time log, and below 
 Requires Python3 and [Poetry](https://python-poetry.org/docs/#installation) installation.
 
 After cloning the repository, refer to the project folder and:
- * Create a .env file based on the .env.example file and add the needed parameters.
+ * Create a `.env` file based on the `.env.example` file and add the needed parameters.
  * Install the needed packeges: `poetry install`
  * Activate a virtual environment: `poetry shell`
  * Create new migrations based on any changes in models: `python3 manage.py makemigrations`
